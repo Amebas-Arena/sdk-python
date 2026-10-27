@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "amebas"
+version = "0.1.0"
+description = "SDK oficial do bot de sala do Amebas Arena: auth, reconexão, eventos e comandos de chat com cooldown, tudo tipado."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Amebas Arena" }]
+keywords = ["amebas-arena", "bot", "websocket", "asyncio", "game"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: AsyncIO",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Typing :: Typed",
+]
+dependencies = ["websockets>=13.0", "typing_extensions>=4.7"]
+
+[project.urls]
+Homepage = "https://github.com/Amebas-Arena/sdk-python"
+Issues = "https://github.com/Amebas-Arena/sdk-python/issues"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "datamodel-code-generator>=0.35"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/amebas"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/amebas", "protocol", "tests", "examples", "README.md", "LICENSE", "scripts"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
